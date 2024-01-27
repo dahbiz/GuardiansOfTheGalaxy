@@ -21,9 +21,6 @@ crop_x, crop_y, crop_width, crop_height = 128, 128, 256, 256  # Adjust as needed
 mean_cropped_image = zoomed_mean_img_128x128[crop_y:crop_y + crop_height, crop_x:crop_x + crop_width]
 
 
-IMG_DIR="Galaxy_data/images_training_rev1" 
-MEAN_IMG="mean.jpg"
-
 # the zooming factor
 zoom_factor = 2
 
@@ -66,7 +63,6 @@ print("Done!")
 
 
 
-saving_path = "proccessed_data/"
 load_crop = np.load(saving_path + "cropped_galaxy_imgs.npy", allow_pickle=True).item()
 
 
