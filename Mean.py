@@ -28,6 +28,9 @@ for galaxy_id in galaxy_ids:
 
         # store the numpy array in the dictionary with the galaxy_id as the key
         output_dict[galaxy_id] = numpydata
-x=np.array(list(output_dict.values())).mean()
+
+data_array = np.array(list(output_dict.values()))
+
+mean_array = np.mean(data_array, axis=0)       
 with open('mean.npy','wb') as f:
-    np.save(f,x)
+    np.save(f,mean_array)
