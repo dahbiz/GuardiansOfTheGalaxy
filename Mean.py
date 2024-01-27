@@ -11,6 +11,9 @@ labels=labels.drop(labels[labels['Result'] == 'i'].index)
 galaxy_ids = labels['GalaxyID'].to_numpy()
 from PIL import Image, ImageOps
 from numpy import asarray
+import matplotlib
+import matplotlib.pyplot as plt
+import seaborn as sns
 import os
 
 folder_path = "Galaxy_data/images_training_rev1/"
@@ -34,3 +37,9 @@ data_array = np.array(list(output_dict.values()))
 mean_array = np.mean(data_array, axis=0)       
 with open('mean.npy','wb') as f:
     np.save(f,mean_array)
+
+mean_image_flattened = mean_image_array.flatten()
+
+correlation_matrix = np.corrcoef(mean_image_flattened)
+sns.heatmap(cor, annot=True, cmap=plt.cm.Reds)
+plt.show()
