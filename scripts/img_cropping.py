@@ -63,61 +63,61 @@ print("Done!")
 
 
 
-load_crop = np.load(saving_path + "cropped_galaxy_imgs.npy", allow_pickle=True).item()
+# load_crop = np.load(saving_path + "cropped_galaxy_imgs.npy", allow_pickle=True).item()
 
 
 
-def test_sample(data_array, n_samples):
-    test_dict = {}
-    count = 0
+# def test_sample(data_array, n_samples):
+#     test_dict = {}
+#     count = 0
 
-    for key, val in data_array.items():
-        if(count < n_samples):
-            test_dict[key] = val
-            count += 1
-    return test_dict
-
-
-test_dict = test_sample(load_crop, 25)
+#     for key, val in data_array.items():
+#         if(count < n_samples):
+#             test_dict[key] = val
+#             count += 1
+#     return test_dict
 
 
-
-# transform
-def our_PCA(data_dict, k):
-    print("Performing PCA ...")
-    pca_galaxy_imgs = {}
-    inv_pca_galaxy_imgs = {}
-    pca = PCA(n_components=k, svd_solver='full', random_state=42)
-    count = 1
-    total = len(data_dict)
-    for key, val in data_dict.items():
-        if count == total + 1:
-            break
-        sys.stdout.write("\r" + str(count) + " / " + str(total))
-        sys.stdout.flush()
-        pca_galaxy_imgs[key] = pca.fit_transform(val)
-        inv_pca_galaxy_imgs[key] = pca.inverse_transform(pca_galaxy_imgs[key])
-        count += 1
-    print("\ndone!")
-    return  pca_galaxy_imgs, inv_pca_galaxy_imgs
+# test_dict = test_sample(load_crop, 25)
 
 
 
+# # transform
+# def our_PCA(data_dict, k):
+#     print("Performing PCA ...")
+#     pca_galaxy_imgs = {}
+#     inv_pca_galaxy_imgs = {}
+#     pca = PCA(n_components=k, svd_solver='full', random_state=42)
+#     count = 1
+#     total = len(data_dict)
+#     for key, val in data_dict.items():
+#         if count == total + 1:
+#             break
+#         sys.stdout.write("\r" + str(count) + " / " + str(total))
+#         sys.stdout.flush()
+#         pca_galaxy_imgs[key] = pca.fit_transform(val)
+#         inv_pca_galaxy_imgs[key] = pca.inverse_transform(pca_galaxy_imgs[key])
+#         count += 1
+#     print("\ndone!")
+#     return  pca_galaxy_imgs, inv_pca_galaxy_imgs
+
+
+
+# # pca_galaxy_imgs, inv_pca_galaxy_imgs = our_PCA(test_dict, 0.9)
 # pca_galaxy_imgs, inv_pca_galaxy_imgs = our_PCA(test_dict, 0.9)
-pca_galaxy_imgs, inv_pca_galaxy_imgs = our_PCA(test_dict, 0.9)
 
-np.save(saving_path + "pca_galaxy_imgs.npy", pca_galaxy_imgs)
-np.save(saving_path + "inv_pca_galaxy_imgs.npy", inv_pca_galaxy_imgs)
+# np.save(saving_path + "pca_galaxy_imgs.npy", pca_galaxy_imgs)
+# np.save(saving_path + "inv_pca_galaxy_imgs.npy", inv_pca_galaxy_imgs)
 
 
-# function to plot different imgs stored in the dict
-def plot_list(data_dict, n_imgs):
-    fig, ax = plt.subplots(figsize = (20, 20))
-    count = 0
-    for i in range(0, len(data_dict)):
-        if(count < n_imgs):
-            count += 1
-            plt.subplot(5, 5, i + 1)
-            plt.title('Galaxy data {}'.format(i-1))
-            img = list(data_dict.values())[i]
-            plt.imshow(img)
+# # function to plot different imgs stored in the dict
+# def plot_list(data_dict, n_imgs):
+#     fig, ax = plt.subplots(figsize = (20, 20))
+#     count = 0
+#     for i in range(0, len(data_dict)):
+#         if(count < n_imgs):
+#             count += 1
+#             plt.subplot(5, 5, i + 1)
+#             plt.title('Galaxy data {}'.format(i-1))
+#             img = list(data_dict.values())[i]
+#             plt.imshow(img)
