@@ -75,6 +75,6 @@ print("df done")
 #print("starting plot pca component") 
 #fig=plt.figure()
 #ax=fig.add_subplot(111,projection='3d')
-#ax.scatter(f_reduced[:,0],f_reduced[:,1],f_reduced[:2],c=target,cmap=plt.cm.Set1)
+#ax.scatter(f_reduced[:,0],f_reduced[:,1],f_reduced[:,2],c=target,cmap=plt.cm.Set1)
 #plt.savefig("0-1-2.png",format='png')
 
